@@ -1,5 +1,7 @@
-import { Client } from "@notionhq/client";
-import fs from "fs";
+// fetch-notion.js (CommonJS version)
+
+const { Client } = require("@notionhq/client");
+const fs = require("fs");
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 const pageId = process.env.NOTION_PAGE_ID;
@@ -21,4 +23,7 @@ async function fetchPage() {
   console.log("✅ README.md updated from Notion!");
 }
 
-fetchPage();
+fetchPage().catch(err => {
+  console.error("❌ Error fetching Notion page:", err);
+  process.exit(1);
+});
