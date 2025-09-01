@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Work Report:",
   "main": "fetch-notion.js",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
