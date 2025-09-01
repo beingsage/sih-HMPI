@@ -1,29 +1,33 @@
-// fetch-notion.js (CommonJS version)
+// fetch-notion.js
+import { Client } from "@notionhq/client";
+import { NotionToMarkdown } from "notion-to-md";
+import fs from "fs";
 
-const { Client } = require("@notionhq/client");
-const fs = require("fs");
+// Load secrets from env
+const notion = new Client({ auth: process.env.NOTION_API_KEY });
+const n2m = new NotionToMarkdown({ notionClient: notion });
 
-const notion = new Client({ auth: process.env.NOTION_TOKEN });
-const pageId = process.env.NOTION_PAGE_ID;
+const NOTION_PAGE_ID = process.env.NOTION_PAGE_ID || ""; // must set in GitHub secrets
 
-// Fetch page content
-async function fetchPage() {
-  const blocks = await notion.blocks.children.list({ block_id: pageId });
-  
-  let mdContent = "# 📖 Project Page (Synced from Notion)\n\n";
+async function updateReadme() {
+  try {
+    // Convert Notion Page → Markdown
+    const mdBlocks = await n2m.pageToMarkdown(NOTION_PAGE_ID);
+    const mdString = n2m.toMarkdownString(mdBlocks);
 
-  for (const block of blocks.results) {
-    if (block.type === "heading_1") mdContent += `# ${block.heading_1.rich_text[0]?.plain_text}\n\n`;
-    if (block.type === "heading_2") mdContent += `## ${block.heading_2.rich_text[0]?.plain_text}\n\n`;
-    if (block.type === "paragraph") mdContent += `${block.paragraph.rich_text.map(t => t.plain_text).join("")}\n\n`;
-    if (block.type === "bulleted_list_item") mdContent += `- ${block.bulleted_list_item.rich_text.map(t => t.plain_text).join("")}\n`;
+    // Wrap in section so only that part updates
+    const newContent = `# My Project\n
+<!-- NOTION-START -->
+${mdString.parent}
+<!-- NOTION-END -->
+`;
+
+    fs.writeFileSync("README.md", newContent);
+    console.log("✅ README.md updated with Notion content!");
+  } catch (err) {
+    console.error("❌ Error updating README:", err.message);
+    process.exit(1);
   }
-
-  fs.writeFileSync("README.md", mdContent, "utf8");
-  console.log("✅ README.md updated from Notion!");
 }
 
-fetchPage().catch(err => {
-  console.error("❌ Error fetching Notion page:", err);
-  process.exit(1);
-});
+updateReadme();

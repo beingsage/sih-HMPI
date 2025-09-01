@@ -1,0 +1,23 @@
+{
+  "name": "sih-hmpi",
+  "version": "1.0.0",
+  "description": "Work Report:",
+  "main": "fetch-notion.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beingsage/sih-HMPI.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/beingsage/sih-HMPI/issues"
+  },
+  "homepage": "https://github.com/beingsage/sih-HMPI#readme",
+  "dependencies": {
+    "@notionhq/client": "^4.0.2",
+    "notion-to-md": "^3.1.9"
+  }
+}
