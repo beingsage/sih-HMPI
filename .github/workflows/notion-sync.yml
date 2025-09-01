@@ -1,13 +1,16 @@
 name: Update README from Notion
 
 on:
-  workflow_dispatch:  # manual run
+  workflow_dispatch:   # manual run
   schedule:
     - cron: "0 * * * *"  # runs every hour
 
 jobs:
   update-readme:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write   # ✅ allow pushing to repo
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -26,10 +29,11 @@ jobs:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_PAGE_ID: ${{ secrets.NOTION_PAGE_ID }}
 
-      - name: Commit & Push
+      - name: Commit & Push changes
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git add README.md
           git commit -m "chore: update README from Notion" || echo "No changes to commit"
-          git push
+          git push origin HEAD:${{ github.ref }}
