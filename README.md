@@ -8,7 +8,7 @@ Work Report Link: https://www.notion.so/SIH-19e62b73a2798091bbceeb4cd96063d1?sou
 | DATE | KUNAL | SUJAL | PRAKHAR | RAGHAV | DEVANSH | A/B |
 | --- | --- | --- | --- | --- | --- | --- |
 | 31 AUG |  | Automated sync action workflow |  |  |  |  |
-| 1 SEPT |  |  |  |  |  |  |
+| 1 SEPT |  | Setup Frontend folder |  |  |  |  |
 | 2 SEPT |  |  |  |  |  |  |
 
 
