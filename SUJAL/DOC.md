@@ -10,3 +10,10 @@ via INDIA WRIS by pinging the INDIA WRIS geoserver with a WFS request (2020-Apr-
 compare the various datasets available and document metadata for each
 create some map layers using the raw groundwater level data available
 scraper to download CGWB data for any state and any time period necessary
+
+
+
+
+1. Central Ground Water Board has 16 Regional Chemical Laboratories to carry out chemical analysis of water samples. The Chemical laboratories are well equipped with sophisticated instruments like ICP-MS, Atomic Absorption Spectrophotometer (AAS) etc. Ground water sampling for quality monitoring is done once a year during the premonsoon period. In addition to it ground water samples are also collected and analysed as a part of other scientific studies.
+
+2. 
