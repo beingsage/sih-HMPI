@@ -4,6 +4,13 @@ Policy engine
 Remediation  engine 
 Simualtion engine
 
+Seamless api for 20+ ministries 
+Main data schema -- 20 + data analysis engines 
+Each engine parameters is mutable, 75% are from frontend side and 95% are from api side 
+Lifescycle of heavy metal(incoming, processing, outgoing) on each raster 
+Page on  any Phenomenos related to heavy metal (disease, industrial) and thier raster and soread information 
+Based on satellite imageries and google map it will show who are the main contributors of this
+
 
 
 
